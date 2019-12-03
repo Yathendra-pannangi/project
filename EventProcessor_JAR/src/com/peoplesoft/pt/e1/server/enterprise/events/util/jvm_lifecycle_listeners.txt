@@ -1,0 +1,6 @@
+#
+#  List JVM lifecycle listeners one per line.
+#
+com.peoplesoft.pt.e1.server.enterprise.events.transferagent.TransferAgentJVMLifecycleListener
+com.peoplesoft.pt.e1.server.enterprise.events.cache.CachePreloader
+com.peoplesoft.pt.e1.server.enterprise.events.adaptor.AdaptorManager

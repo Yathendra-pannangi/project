@@ -1,0 +1,321 @@
+<?xml version="1.0"?>
+<mapping>
+
+    <description>Event client Castor mapping</description>
+
+	<!-- ========================================================================== -->
+	<!--   Request types.                                                           -->
+	<!-- ========================================================================== -->
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <field name="credentials" type="com.peoplesoft.pt.e1.common.events.ConnectorCredentials">
+            <bind-xml name="credentials" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventListRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="event-list-request"/>
+        <field name="environment" type="string">
+            <bind-xml name="environment" node="element"/>
+        </field>
+    </class>
+    
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventEnvRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="event-env-request"/>
+        <field name="environment" type="string">
+            <bind-xml name="environment" node="element"/>
+        </field>
+    </class>
+    
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.GetSubscriptionsRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="get-subscriptions-request"/>
+    </class>
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.MSMQSubscriberRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="msmq-subscriber-request"/>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventTemplateRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="event-template-request"/>
+        <field name="category" type="string">
+            <bind-xml name="category" node="element"/>
+        </field>
+        <field name="type" type="string">
+            <bind-xml name="type" node="element"/>
+        </field>
+        <field name="environment" type="string">
+            <bind-xml name="environment" node="element"/>
+        </field>
+        <field name="host" type="string">
+            <bind-xml name="host" node="element"/>
+        </field>
+        <field name="port" type="integer">
+            <bind-xml name="port" node="element"/>
+        </field>
+    </class>
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventSchemaRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="event-schema-request"/>
+        <field name="category" type="string">
+            <bind-xml name="category" node="element"/>
+        </field>
+        <field name="type" type="string">
+            <bind-xml name="type" node="element"/>
+        </field>
+        <field name="environment" type="string">
+            <bind-xml name="environment" node="element"/>
+        </field>
+        <field name="host" type="string">
+            <bind-xml name="host" node="element"/>
+        </field>
+        <field name="port" type="integer">
+            <bind-xml name="port" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.CreateSessionRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="create-session-request"/>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ManageSessionRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="manage-session-request"/>
+        <field name="sessionId" type="string">
+            <bind-xml name="sessionId" node="element"/>
+        </field>
+        <field name="operation" type="string">
+            <bind-xml name="operation" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ReceiveRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="receive-request"/>
+        <field name="sessionId" type="string">
+            <bind-xml name="sessionId" node="element"/>
+        </field>
+        <field name="timeout" type="long">
+            <bind-xml name="timeout" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.AcknowledgeRequest"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientRequest">
+        <map-to xml="acknowledge-request"/>
+        <field name="sessionId" type="string">
+            <bind-xml name="session-id" node="element"/>
+        </field>
+    </class>
+
+	<!-- ========================================================================== -->
+	<!--   Response types.                                                          -->
+	<!-- ========================================================================== -->
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ErrorResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="error-response"/>
+        <field name="errorMessage" type="string">
+            <bind-xml name="error-message" node="element"/>
+        </field>
+        <field name="errorCode" type="integer">
+            <bind-xml name="error-code" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventListResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="event-list-response"/>
+        <field name="eventList"
+               collection="arraylist"
+               type="com.peoplesoft.pt.e1.common.events.EventTypeDefinition">
+            <bind-xml name="event-type-definition" node="element"/>
+        </field>
+    </class>
+    
+     <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventEnvResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="event-env-response"/>
+        <field name="eventEnv"
+               collection="arraylist"
+               type="com.peoplesoft.pt.e1.common.events.EventTypeDefinition">
+            <bind-xml name="event-type-definition" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.GetSubscriptionsResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="get-subscriptions-response"/>
+        <field name="subscriptions"
+               collection="arraylist"
+               type="com.peoplesoft.pt.e1.common.events.Subscription">
+            <bind-xml name="Subscription" node="element"/>
+        </field>
+    </class>
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.MSMQSubscriberResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="msmq-subscriber-response"/>
+        <field name="MSMQSubscribers"
+               collection="arraylist"
+               type="com.peoplesoft.pt.e1.common.events.connectorsvc.MSMQSubscriber">
+            <bind-xml name="msmq-subscriber" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventTemplateResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="event-template-response"/>
+        <field name="templateXml" type="string">
+            <bind-xml name="templateXml" node="element"/>
+        </field>
+    </class>
+    
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.EventSchemaResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="event-schema-response"/>
+        <field name="schemaXml" type="string">
+            <bind-xml name="schemaXml" node="element"/>
+        </field>
+    </class>
+    
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.CreateSessionResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="create-session-response"/>
+        <field name="sessionId" type="string">
+            <bind-xml name="sessionId" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ManageSessionResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="manage-session-response"/>
+    </class>
+    
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ReceiveResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="receive-response"/>
+        <field name="event"
+               type="com.peoplesoft.pt.e1.common.events.EventMessage">
+            <bind-xml name="event" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.clientsvc.internal.AcknowledgeResponse"
+           extends="com.peoplesoft.pt.e1.common.events.clientsvc.internal.ClientResponse">
+        <map-to xml="acknowledge-response"/>
+    </class>
+
+	<!-- ========================================================================== -->
+	<!--   Non-root data types.                                                     -->
+	<!-- ========================================================================== -->
+
+    <class name="com.peoplesoft.pt.e1.common.events.ConnectorCredentials">
+        <field name="username" type="string">
+            <bind-xml name="username" node="element"/>
+        </field>
+        <field name="environment" type="string">
+            <bind-xml name="environment" node="element"/>
+        </field>
+        <field name="securityToken" type="string">
+            <bind-xml name="security-token" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.EventTypeDefinition">
+        <field name="category" type="string">
+            <bind-xml name="category" node="element"/>
+        </field>
+        <field name="type" type="string">
+            <bind-xml name="type" node="element"/>
+        </field>
+        <field name="environment" type="string">
+            <bind-xml name="environment" node="element"/>
+        </field>
+        <field name="active" type="boolean">
+            <bind-xml name="active" node="element"/>
+        </field>
+        <field name="subscribedTo" type="boolean">
+            <bind-xml name="subscribed-to" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.Subscription">
+        <field name="name" type="string">
+            <bind-xml name="name" node="element"/>
+        </field>
+        <field name="description" type="string">
+            <bind-xml name="description" node="element"/>
+        </field>
+        <field name="subscribedToEventTypes"
+               collection="set"
+               type="com.peoplesoft.pt.e1.common.events.SubscribedToEventType">
+            <bind-xml name="subscribed-to-event-type" node="element"/>
+        </field>
+        <field name="environments"
+               collection="set"
+               type="java.lang.String">
+            <bind-xml name="subscribed-to-environment" node="element"/>
+        </field>
+        
+    </class>
+    <class name="com.peoplesoft.pt.e1.common.events.connectorsvc.MSMQSubscriber">
+     <field name="subscriberName" type="string">
+            <bind-xml name="subscriberName" node="element"/>
+        </field>
+        <field name="queueName" type="string">
+            <bind-xml name="queueName" node="element"/>
+        </field>
+        <field name="queueLabel" type="string">
+            <bind-xml name="queueLabel" node="element"/>
+        </field>      
+        
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.SubscribedToEventType">
+        <field name="type" type="string">
+            <bind-xml name="type" node="element"/>
+        </field>
+        <field name="category" type="string">
+            <bind-xml name="category" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.peoplesoft.pt.e1.common.events.EventMessage">
+        <field name="eventID" type="string">
+            <bind-xml name="event-id" node="element"/>
+        </field>
+        <field name="category" type="string">
+            <bind-xml name="category" node="element"/>
+        </field>
+        <field name="type" type="string">
+            <bind-xml name="type" node="element"/>
+        </field>
+        <field name="environment" type="string">
+            <bind-xml name="environment" node="element"/>
+        </field>
+        <field name="sequenceNumber" type="long">
+            <bind-xml name="sequence-number" node="element"/>
+        </field>
+        <field name="dateTime"
+               type="com.jdedwards.base.datatypes.JDECalendar">
+            <bind-xml name="date-time" node="element"/>
+        </field>
+        <field name="XMLPayload" type="string">
+            <bind-xml name="xml-payload" node="element"/>
+        </field>
+    </class>
+
+    <class name="com.jdedwards.base.datatypes.JDECalendar">
+        <field name="timeMillis" type="long">
+            <bind-xml name="milliseconds-since-epoc" node="element"/>
+        </field>
+    </class>
+
+</mapping>

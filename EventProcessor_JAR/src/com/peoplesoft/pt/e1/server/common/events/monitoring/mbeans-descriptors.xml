@@ -1,0 +1,91 @@
+<!DOCTYPE mbeans-descriptors PUBLIC
+   "-//Apache Software Foundation//DTD Model MBeans Configuration File"
+    "http://jakarta.apache.org/commons/dtds/mbeans-descriptors.dtd">
+<mbeans-descriptors>
+   <mbean name="rte_monitoring_operations" description="RTE Monitor Admin Operations"
+          type="com.peoplesoft.pt.e1.server.common.events.monitoring.EventMonitoringImpl">
+      <!-- Failed Event Operations -->
+      <operation name="deleteAllFailedEvents" description="Delete all failed events from F90712." impact="ACTION"
+                 returnType="void">
+        <descriptor>
+            <field name="requiredPermissions" value="webProductInstance" /> 
+        </descriptor>
+      </operation>
+      <operation name="deleteFailedEvent" description="Delete selected failed event from F90712." impact="ACTION"
+                 returnType="void">
+        <descriptor>
+            <field name="requiredPermissions" value="webProductInstance" /> 
+        </descriptor>
+        <parameter name="eventID" description="Event ID" type="java.lang.String" />
+      </operation>
+      <operation name="getFailedEventsInfoManagementConsole" description="Get list of failed events and their attributes." impact="ACTION"
+                 returnType="void">
+      </operation>
+      
+      <!-- Work With Subscribers Operations -->
+      <operation name="getNumberOfQueueMessages" description="Get the number of messages in the subscriber's queue." impact="ACTION"
+                 returnType="long">
+        <parameter name="subcriberID" description="Subscriber ID" type="java.lang.String" />
+      </operation>
+      <operation name="getNumberOfRoutedMessages" description="Get the number of events routed to this subscriber." impact="ACTION"
+                 returnType="long">
+        <parameter name="subcriberID" description="Subscriber ID" type="java.lang.String" />
+      </operation>
+      <operation name="purgeSubscriberQueue" description="Purge all the messages for this subscriber." impact="ACTION"
+                 returnType="void">
+        <descriptor>
+            <field name="requiredPermissions" value="webProductInstance" /> 
+        </descriptor>
+        <parameter name="subcriberID" description="Subscriber ID" type="java.lang.String" />
+      </operation>
+      <operation name="getAllSubscribersMangementConsole" description="Get all subscribers." impact="ACTION"
+                 returnType="void">
+      </operation>
+      
+      <!-- View Metrics Operations -->
+      <operation name="getCurrentQueueStorageSpace" description="Get overall current queue storage space." impact="ACTION"
+                 returnType="long">
+      </operation>
+      <operation name="getStorageSpaceRemaining" description="Get overall current queue storage space remaining." impact="ACTION"
+                 returnType="long">
+      </operation>
+      <operation name="getEventMetricsManagementConsole" description="Get a list of event types (Real-time, Workflow, XAPI, and Z) and their counts." impact="ACTION" returnType="void">
+      </operation>
+      
+   </mbean>
+   <mbean name="rte_monitoring_failed_event_info" description="RTE Monitor Failed Event Info"
+          type="com.peoplesoft.pt.e1.server.common.events.monitoring.FailedEventMessage">
+      <!-- Failed Event Data -->
+      <attribute name="failedMessage" description="Failed Event Message" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="state" description="Failed Event State" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="user" description="Failed Event UserID" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="eventID" description="Failed Event ID" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="type" description="Failed Event Type" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="category" description="Failed Event Category" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="bSFN" description="Failed Event Business Function" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="environment" description="Failed Event Environment" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="application" description="Failed Event Application" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="applicationVersion" description="Failed Event Application Version" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="function" description="Failed Event Function" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="processID" description="Failed Event Process ID" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="role" description="Failed Event Role" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="scope" description="Failed Event Scope" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="sequenceNumber" description="Failed Event Sequence Number" type="long" readable="true" writeable="false" />
+      <attribute name="sessionID" description="Failed Event SessionID" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="sourceRoute" description="Failed Event Source Route" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="host" description="Failed Event Host" type="java.lang.String" readable="true" writeable="false" />   
+   </mbean>
+   <mbean name="rte_monitoring_event_metrics" description="RTE Monitor Event Metrics"
+          type="com.peoplesoft.pt.e1.server.common.events.monitoring.EventMetrics">
+      <!-- Event Metric Data -->
+      <attribute name="matricCount" description="Metric Count" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="matricName" description="Metric Name" type="java.lang.String" readable="true" writeable="false" />
+   </mbean>
+   <mbean name="rte_monitoring_subscriber_info" description="RTE Monitor Subscriber Info"
+          type="com.peoplesoft.pt.e1.server.common.events.monitoring.SubscriberMonitoringInfo">
+      <!-- Subscriber Data -->
+      <attribute name="description" description="Subscriber Description" type="java.lang.String" readable="true" writeable="false" />
+      <attribute name="active" description="Subscriber Active Y/N" is="true" type="boolean" writeable="false" />
+      <attribute name="username" description="Subscriber User ID" type="java.lang.String" readable="true" writeable="false" />
+   </mbean>
+</mbeans-descriptors>

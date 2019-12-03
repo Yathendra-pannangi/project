@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Class-Path: Base_JAR.jar 
+ JdbjBase_JAR.jar 
+ JdbjInterfaces_JAR.jar 
+ JdeNet_JAR.jar 
+ Spec_JAR.jar 
+ System_JAR.jar 
+ BusinessLogicServices_JAR.jar 
+ ApplicationAPIs_JAR.jar 
+ castor.jar 
+ commons-lang-2.6.jar 
+ PMApi_JAR.jar 
+ BizLogicContainer_JAR.jar 
+ BizLogicContainerClient_JAR.jar 
+ ApplicationLogic_JAR.jar 
+ Generator_JAR.jar 
+ MetadataInterface.jar 
+ Metadata.jar 
+ ManagementAgent_JAR.jar 
+ WebClient_JAR.jar 
+ Maf2Base_JAR.jar 
+ jmxri.jar 
+ jmxremote.jar 
+ jmxremote_optional.jar 
+ commons-logging.jar 
+ rmissl.jar 
+ httpclient.jar 
+ httpcore.jar 
+ httpmime.jar 
+ commons-codec.jar 
+ xerces.jar 
+ rte/xmlparserv2.jar 
+
+

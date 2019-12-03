@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/1.4 JDK"/>
+    <classpathentry kind="var" path="WAS_50_PLUGINDIR/lib/j2ee.jar"/>
+    <classpathentry kind="lib" path="/_Build/library/log4j.jar"/>
+    <classpathentry exported="true" kind="src" path="/Base_JAR"/>
+    <classpathentry exported="true" kind="src" path="/JdbjBase_JAR"/>
+    <classpathentry exported="true" kind="src" path="/JdbjInterfaces_JAR"/>
+    <classpathentry exported="true" kind="src" path="/JdeNet_JAR"/>
+    <classpathentry exported="true" kind="src" path="/Spec_JAR"/>
+    <classpathentry exported="true" kind="src" path="/System_JAR"/>
+    <classpathentry exported="true" kind="src" path="/BusinessLogicServices_JAR"/>
+    <classpathentry kind="lib" path="/_Build/container_jars/websphere/xerces.jar"/>
+    <classpathentry kind="lib" path="/_Build/library/castor.jar"/>
+    <classpathentry kind="lib" path="/_Build/container_jars/websphere/com.ibm.mqjms.jar"/>
+    <classpathentry kind="src" path="/SystemInterfaces_JAR"/>
+    <classpathentry kind="lib" path="/_Build/container_jars/websphere/admin.jar"/>
+    <classpathentry kind="lib" path="/_Build/container_jars/websphere/management.jar"/>
+    <classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.14
+Created-By: 1.8.0_231-b11 (Oracle Corporation)
+Class-Path: Base_JAR.jar JdbjBase_JAR.jar JdbjInterfaces_JAR.jar JdeNe
+ t_JAR.jar Spec_JAR.jar System_JAR.jar BusinessLogicServices_JAR.jar A
+ pplicationAPIs_JAR.jar castor.jar commons-lang-2.6.jar PMApi_JAR.jar 
+ BizLogicContainer_JAR.jar BizLogicContainerClient_JAR.jar Application
+ Logic_JAR.jar Generator_JAR.jar MetadataInterface.jar Metadata.jar Ma
+ nagementAgent_JAR.jar WebClient_JAR.jar Maf2Base_JAR.jar jmxri.jar jm
+ xremote.jar jmxremote_optional.jar commons-logging.jar rmissl.jar htt
+ pclient.jar httpcore.jar httpmime.jar commons-codec.jar xerces.jar rt
+ e/xmlparserv2.jar 
+BuildDate: 20191203 1208
+Build-OS-Name: Windows 7
+Build-OS-Arch: amd64
+Build-OS-Version: 6.1
+BuildType: ${manifest.buildtype}
+Built-By: ashok
+JavacTargetVersion: 1.6
+

@@ -1,0 +1,125 @@
+<?xml version = '1.0' encoding = 'ISO-8859-1' ?>
+<project name="EventProcessor_JAR" default="default" basedir=".">
+
+        <!-- GPH Global Properties Header (used for automated updates) -->
+
+	<!-- Set property values -->
+	<property name="file.jar.name" value="EventProcessor_JAR.jar"/>
+	<property name="srcdir" value="${basedir}/src"/>
+	<property name="bindir" value="${basedir}/antbin"/>
+	<property name="jarsdir" value="${basedir}/lib"/>
+	<property name="deliverydir" value ="${basedir}/deliver"/>
+	<property name="library" value="${basedir}/lib"/>
+	<property name="purchased" value="${basedir}/lib"/>
+	<property name="containerJars" value="${basedir}/lib"/>
+	<property environment="env"/>
+
+    <!--  Define the project classpath.  -->
+	<path id="project.class.path">
+        <pathelement location="${jarsdir}/Base_JAR.jar"/>
+        <pathelement location="${jarsdir}/BusinessLogicServices_JAR.jar"/>
+        <pathelement location="${jarsdir}/JdbjInterfaces_JAR.jar"/>
+        <pathelement location="${jarsdir}/JdeNet_JAR.jar"/>
+        <pathelement location="${jarsdir}/Spec_JAR.jar"/>
+        <pathelement location="${jarsdir}/System_JAR.jar"/>
+        <pathelement location="${jarsdir}/SystemInterfaces_JAR.jar"/>
+	    <pathelement location="${jarsdir}/ManagementAgent_JAR.jar"/>
+        <pathelement location="${library}/castor.jar"/>
+	    <pathelement location="${library}/commons-codec.jar"/>
+        <pathelement location="${containerJars}/j2ee1_3.jar"/>
+        <pathelement location="${containerJars}/com.ibm.mqjms.jar"/>
+        <pathelement location="${containerJars}/admin.jar"/>
+        <pathelement location="${containerJars}/management.jar"/>
+		<pathelement location="${containerJars}/xerces.jar"/>
+    </path>
+    <pathconvert dirsep="/" property="project.classpath.prop" refid="project.class.path"/>
+	
+	
+        <property name="javac_1.6" value="${env.JAVA16_HOME}/bin/javac"/>
+        <property name="javac_src_version" value="1.6"/>
+        <property name="javac_target_version" value="1.6"/> 
+
+        <!-- GPF Global Properties Footer (used for automated updates)  -->
+
+        <target name="init">
+
+		<!-- setup the folders -->
+		<delete dir="${bindir}"/>
+		<mkdir dir="${bindir}"/>
+		<mkdir dir="${deliverydir}"/>
+
+		<!-- determine the build type for the manifest files -->
+		<condition property="manifest.buildtype" value="optimize">
+			<istrue value="${optimize}"/>
+		</condition>
+		<condition property="manifest.buildtype" value="debug">
+			<istrue value="${debug}"/>
+		</condition>
+		
+		<echo message="Classpath: ${project.classpath.prop}"/>
+		
+	</target>
+	
+	<target name="compile">
+		<javac srcdir="${srcdir}"
+ 			   executable="${javac_1.6}"
+ 			   source="${javac_src_version}"
+ 			   target="${javac_target_version}"
+			   fork="yes"
+			   destdir="${bindir}"
+			   debug="${debug}"
+			   optimize="${optimize}">
+            		<classpath refid="project.class.path"/>
+					
+		</javac>
+	<!-- Copy the SCF mbean descriptor files to the output directory -->
+	<copy todir="${bindir}">
+	<fileset dir="${srcdir}">
+	<include name="**/mbeans-descriptors.xml"/>  
+	</fileset> 
+	</copy>
+
+	</target>
+
+	<target name="makejar">
+		<tstamp/>
+		<property name="build.date" value="${DSTAMP} ${TSTAMP}"/>
+		
+		<!--  Update the manifest.  -->
+		<copy todir="${bindir}/META-INF">
+		    <fileset dir="${srcdir}/META-INF"/>
+		</copy>
+        <manifest file="${bindir}/META-INF/MANIFEST.MF" mode="update">
+			<attribute name="BuildDate" value="${build.date}"/>
+			<attribute name="Build-OS-Name" value="${os.name}"/>
+			<attribute name="Build-OS-Arch" value="${os.arch}"/>
+			<attribute name="Build-OS-Version" value="${os.version}"/>
+			<attribute name="BuildType" value="${manifest.buildtype}"/>
+			<attribute name="Built-By" value="${user.name}"/>
+			<attribute name="JavacTargetVersion" value="${javac_target_version}"/>
+		</manifest>
+		
+		<!--  Copy resources into the bin folder.  -->
+		<copy file="${srcdir}/com/peoplesoft/pt/e1/server/enterprise/events/util/jvm_lifecycle_listeners.txt"
+		      tofile="${bindir}/com/peoplesoft/pt/e1/server/enterprise/events/util/jvm_lifecycle_listeners.txt"/>
+		<copy file="${srcdir}/com/peoplesoft/pt/e1/common/events/clientsvc/internal/CastorMapping.xml"
+		      tofile="${bindir}/com/peoplesoft/pt/e1/common/events/clientsvc/internal/CastorMapping.xml"/>
+		<jar destfile="${deliverydir}/${file.jar.name}"
+			basedir="${bindir}"
+			manifest="${bindir}/META-INF/MANIFEST.MF"
+			update="no">
+		</jar>
+	</target>
+
+	<target name="cleanup">
+	</target>
+
+	<target name="default" depends="init">
+		<antcall target="compile"/>
+		<antcall target="makejar"/>
+		<antcall target="cleanup"/>
+	</target>
+	
+	
+
+</project>
